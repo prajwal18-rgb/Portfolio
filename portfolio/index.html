@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prajwal Dhoke — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EDIT GUIDE
+     Search for "EDIT:" comments throughout this file — every one
+     marks text or a link you should personalize. Images live in
+     the /images folder; swap the files but keep the same names,
+     or update the src="" paths below to match new filenames.
+     ============================================================ */
+
+  :root{
+    --espresso:#2B1810;   /* darkest roast — dark section backgrounds, primary text */
+    --cacao:#5C3A28;      /* mid brown — headings on light bg, buttons */
+    --milk:#8C5A3C;       /* softer brown — secondary text, borders */
+    --caramel:#C99B57;    /* warm gold-brown accent — the one accent color */
+    --cream:#FAF3E9;      /* warm off-white — main background */
+    --white:#FFFFFF;
+    --line: rgba(43,24,16,0.12);
+    --max: 1120px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3{ font-family:'Fraunces', serif; color:var(--espresso); font-weight:600; line-height:1.1; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+  section{ padding:120px 0; }
+  @media (max-width:700px){ section{ padding:72px 0; } .wrap{ padding:0 22px; } }
+
+  /* ---------- chocolate-square texture, the one decorative motif ---------- */
+  .square-texture{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .square-texture.on-dark{
+    background-image:
+      linear-gradient(rgba(250,243,233,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250,243,233,0.08) 1px, transparent 1px);
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(250,243,233,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.01em; }
+  .logo span{ color:var(--caramel); }
+  .nav-links{ display:flex; gap:36px; font-size:0.95rem; }
+  .nav-links a{ position:relative; padding:4px 0; color:var(--cacao); }
+  .nav-links a:hover{ color:var(--espresso); }
+  .nav-cta{
+    border:1.5px solid var(--cacao); padding:9px 20px; border-radius:2px;
+    font-size:0.9rem; transition:background .2s, color .2s;
+  }
+  .nav-cta:hover{ background:var(--cacao); color:var(--white); }
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; }
+  @media (max-width:820px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-top:76px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; min-height:92vh;
+  }
+  @media (max-width:900px){ .hero{ grid-template-columns:1fr; min-height:auto; } }
+
+  .hero-text{
+    display:flex; flex-direction:column; justify-content:center;
+    padding:64px 6vw; position:relative;
+  }
+  .eyebrow{ color:var(--milk); font-size:0.95rem; margin-bottom:22px; }
+  .hero-text h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    max-width:11ch;
+  }
+  .hero-text .role{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    color:var(--caramel); font-size:clamp(1.2rem,2vw,1.6rem); margin-top:6px;
+  }
+  .hero-text p.intro{
+    margin-top:28px; max-width:46ch; color:var(--milk); font-size:1.05rem;
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:14px 28px; border-radius:2px; font-size:0.95rem;
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-solid{ background:var(--cacao); color:var(--white); }
+  .btn-solid:hover{ background:var(--espresso); transform:translateY(-2px); }
+  .btn-outline{ border:1.5px solid var(--cacao); color:var(--cacao); }
+  .btn-outline:hover{ background:var(--cacao); color:var(--white); transform:translateY(-2px); }
+
+  .hero-visual{
+    position:relative; background:var(--espresso); overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-visual .frame{
+    position:relative; width:62%; aspect-ratio:1/1.05; border-radius:6px;
+    overflow:hidden; border:2px solid rgba(201,155,87,0.5);
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .hero-visual .frame img{ width:100%; height:100%; object-fit:cover; }
+
+  /* ---------- section headings ---------- */
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head .tag{ color:var(--caramel); font-family:'Fraunces', serif; font-style:italic; font-size:1.1rem; }
+  .section-head h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-top:8px; }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+  @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; gap:36px; } }
+  .about-grid p{ color:var(--milk); margin-bottom:18px; max-width:52ch; }
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line); }
+  .stat{ padding:26px 18px 0; border-right:1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:'Fraunces', serif; font-size:2.4rem; color:var(--cacao); font-weight:600; }
+  .stat .label{ font-size:0.85rem; color:var(--milk); margin-top:4px; }
+
+  /* ---------- skills ---------- */
+  .skills-band{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .skill-groups{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+  @media (max-width:820px){ .skill-groups{ grid-template-columns:1fr; } }
+  .skill-group h3{ font-size:1.05rem; color:var(--cacao); margin-bottom:16px; font-weight:600; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{
+    border:1px solid var(--line); padding:8px 16px; border-radius:20px;
+    font-size:0.88rem; color:var(--espresso); background:var(--cream);
+  }
+
+  /* ---------- projects ---------- */
+  .project-grid{ display:grid; grid-template-columns:1fr 1fr; gap:36px; }
+  @media (max-width:820px){ .project-grid{ grid-template-columns:1fr; } }
+  .project-card{
+    background:var(--white); border:1px solid var(--line); overflow:hidden;
+    transition:box-shadow .25s ease, border-color .25s ease;
+  }
+  .project-card:hover{ border-color:var(--caramel); }
+  .project-card .thumb{ aspect-ratio:3/2; overflow:hidden; }
+  .project-card .thumb img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+  .project-card:hover .thumb img{ transform:scale(1.04); }
+  .project-body{ padding:26px 28px 30px; }
+  .project-body h3{ font-size:1.3rem; margin-bottom:8px; }
+  .project-body p{ color:var(--milk); font-size:0.96rem; margin-bottom:16px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .tag{ font-size:0.78rem; color:var(--cacao); border:1px solid var(--line); padding:4px 10px; border-radius:20px; }
+  .project-link{ font-size:0.9rem; color:var(--cacao); border-bottom:1px solid var(--caramel); padding-bottom:2px; }
+  .project-link:hover{ color:var(--espresso); }
+
+  /* ---------- experience timeline ---------- */
+  .timeline-section{ background:var(--espresso); color:var(--cream); position:relative; }
+  .timeline-section .section-head h2{ color:var(--cream); }
+  .timeline-section .section-head .tag{ color:var(--caramel); }
+  .timeline{ position:relative; padding-left:28px; border-left:1.5px solid rgba(250,243,233,0.25); }
+  .t-item{ position:relative; padding-bottom:52px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-33.5px; top:4px;
+    width:10px; height:10px; border-radius:50%; background:var(--caramel);
+  }
+  .t-date{ font-size:0.85rem; color:var(--caramel); margin-bottom:6px; }
+  .t-item h3{ color:var(--cream); font-size:1.25rem; }
+  .t-item .t-org{ color:rgba(250,243,233,0.65); font-size:0.95rem; margin-top:2px; margin-bottom:10px; }
+  .t-item p{ color:rgba(250,243,233,0.75); max-width:60ch; font-size:0.96rem; }
+
+  /* ---------- contact ---------- */
+  .contact{ text-align:center; }
+  .contact h2{ font-size:clamp(2rem,4vw,3rem); max-width:16ch; margin:0 auto 20px; }
+  .contact p.lead{ color:var(--milk); max-width:48ch; margin:0 auto 38px; }
+  .contact-links{ display:flex; justify-content:center; gap:28px; flex-wrap:wrap; margin-top:44px; }
+  .contact-links a{ font-size:0.95rem; color:var(--cacao); border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .contact-links a:hover{ color:var(--espresso); border-color:var(--caramel); }
+
+  footer{
+    border-top:1px solid var(--line); padding:32px 0; text-align:center;
+    font-size:0.85rem; color:var(--milk);
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--caramel); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <!-- EDIT: your name / initials -->
+    <div class="logo">P.<span>D.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="padding-top:0;">
+  <div class="hero-text">
+    <div class="eyebrow"><!-- EDIT: short location / availability line -->E&amp;TC Student, I2IT — Open to Internships &amp; Freelance Projects</div>
+    <!-- EDIT: your name -->
+    <h1>Prajwal Dhoke</h1>
+    <!-- EDIT: your title / role -->
+    <div class="role">Software Developer &amp; AI/ML Devloper</div>
+    <!-- EDIT: a 1–2 sentence introduction -->
+    <p class="intro">I build software end to end — from web and mobile apps to trained machine learning models. I'm a fast, independent learner who enjoys turning an idea into a working, deployed product.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-solid">View my work</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+      <a href="https://github.com/prajwal18-rgb" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="square-texture on-dark"></div>
+    <div class="frame">
+      <!-- EDIT: replace with your photo — recommended square-ish image, at least 800x900px -->
+      <img src="images/profile-placeholder.jpg" alt="Portrait of Your Name">
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:24px;">
+          <div class="tag">About</div>
+          <h2>A little about how I work</h2>
+        </div>
+        <!-- EDIT: your about copy, 2–3 short paragraphs -->
+        <p>I completed my Diploma in Computer Engineering at JSPM's R.S.C.O.E Polytechnic and am currently pursuing my degree in the Electronics &amp; Telecommunication department at I2IT. Alongside my coursework, I've built 18+ independent projects and completed two internships focused on web development and applied machine learning.</p>
+        <p>I'm drawn to new technology, especially AI/ML, and I like the full journey of a project — researching an idea, designing it, building it, and deploying it as something that actually works. I learn quickly, prefer figuring things out hands-on, and enjoy spotting practical problems that software can solve.</p>
+      </div>
+      <div>
+        <!-- EDIT: swap these three numbers/labels for your own highlights -->
+        <div class="stat-row">
+          <div class="stat">
+            <div class="num">18+</div>
+            <div class="label">Independent projects built</div>
+          </div>
+          <div class="stat">
+            <div class="num">2</div>
+            <div class="label">Internships completed</div>
+          </div>
+          <div class="stat">
+            <div class="num">89.56%</div>
+            <div class="label">Diploma final-year score</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="skills-band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Skills</div>
+      <h2>What I bring to a project</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <!-- EDIT: rename groups and pills to match your real skills -->
+        <h3>Programming &amp; Web</h3>
+        <div class="pill-row">
+          <span class="pill">Python</span>
+          <span class="pill">JavaScript / TypeScript</span>
+          <span class="pill">React</span>
+          <span class="pill">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI / Machine Learning</h3>
+        <div class="pill-row">
+          <span class="pill">Data Training</span>
+          <span class="pill">NLP</span>
+          <span class="pill">Computer Vision</span>
+          <span class="pill">Model Deployment</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Mobile, Tools &amp; Platforms</h3>
+        <div class="pill-row">
+          <span class="pill">Flutter</span>
+          <span class="pill">Firebase</span>
+          <span class="pill">Git / GitHub</span>
+          <span class="pill">Shopify</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Selected Work</div>
+      <h2>A few projects I'm proud of</h2>
+    </div>
+    <div class="project-grid">
+
+      <!-- EDIT: repeat this project-card block for each project, or delete extras. Swap the image files in /images with real screenshots when ready. -->
+      <div class="project-card">
+        <div class="thumb">
+          <img src="images/project-placeholder-1.png" alt="Twitter Sentiment Analyzer thumbnail">
+        </div>
+        <div class="project-body">
+          <h3>Twitter Sentiment Analyzer</h3>
+          <p>An NLP tool built during my Persevex AI internship that classifies tweets as positive, negative, or neutral by training a text classification model on real tweet data.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">NLP</span>
+          </div>
+          <a href="https://github.com/prajwal18-rgb/twitter-sentiment-analyzer" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb">
+          <img src="images/project-placeholder-2.png" alt="SafeCityAI Helmet Detection thumbnail">
+        </div>
+        <div class="project-body">
+          <h3>SafeCityAI — Helmet Detection System</h3>
+          <p>A computer vision model that detects whether riders are wearing helmets from image and video input, aimed at supporting road-safety monitoring.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+          <a href="https://github.com/prajwal18-rgb/SafeCityAI-Helmet-Detection" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb">
+          <img src="images/project-placeholder-3.png" alt="DocKeys app thumbnail">
+        </div>
+        <div class="project-body">
+          <h3>DocKeys — Government Scheme Advisor</h3>
+          <p>A Flutter mobile app that helps users find government schemes they're eligible for, tracks required documents in a personal vault, and includes an admin panel for publishing new schemes.</p>
+          <div class="tag-row">
+            <span class="tag">Flutter</span>
+            <span class="tag">SupaBase</span>
+          </div>
+          <a href="https://github.com/prajwal18-rgb/DocKeys" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb">
+          <img src="images/project-placeholder-4.png" alt="Happy Tails website thumbnail">
+        </div>
+        <div class="project-body">
+          <h3>Happy Tails — Pet Shop Website</h3>
+          <p>A fully working e-commerce storefront built on Shopify for a pet shop, covering product listings, cart, and checkout.</p>
+          <div class="tag-row">
+            <span class="tag">Shopify</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <a href="https://github.com/prajwal18-rgb/Happy-Tails" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="thumb">
+          <img src="images/project-placeholder-5.png" alt="End-to-end ML deployment capstone thumbnail">
+        </div>
+        <div class="project-body">
+          <h3>Ward Seva - An App For Nagar Sevak</h3>
+          <p>A mobile app for Nagar Sevak to manage their work and keep track of the complaints and requests of the people.</p>
+          <div class="tag-row">
+            <span class="tag">Flutter</span>
+            <span class="tag">App Deployment</span>
+          </div>
+          <a href="https://github.com/prajwal18-rgb" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:40px; color:var(--milk); font-size:0.95rem;">
+      <!-- EDIT: this line, or remove it -->
+      More projects, including my full diploma project history, are on my
+      <a href="https://github.com/prajwal18-rgb" target="_blank" rel="noopener" style="color:var(--cacao); border-bottom:1px solid var(--caramel);">GitHub</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" class="timeline-section" style="position:relative;">
+  <div class="square-texture on-dark"></div>
+  <div class="wrap" style="position:relative;">
+    <div class="section-head">
+      <div class="tag">Experience</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline">
+      <!-- EDIT: fill in the [Add Dates] placeholders below with your real internship dates, most recent first -->
+      <div class="t-item">
+        <div class="t-date">[Add Dates]</div>
+        <h3>AI Intern</h3>
+        <div class="t-org">Persevex</div>
+        <p>Built and trained machine learning models using Python across three projects: a Twitter sentiment analyzer, the SafeCityAI helmet-detection system, and an end-to-end capstone covering training through live deployment.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">[Add Dates]</div>
+        <h3>Junior Website Developer</h3>
+        <div class="t-org">ProAzure</div>
+        <p>Worked on client-facing web development tasks while building web fundamentals through hands-on, self-directed learning alongside the team.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Ongoing</div>
+        <h3>Independent Projects</h3>
+        <div class="t-org">Self-directed</div>
+        <p>Designed, built, and shipped 18+ personal and academic projects spanning web, mobile, and AI/ML — from initial idea through to a working, deployed product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Certifications</div>
+      <h2>Courses &amp; certifications</h2>
+    </div>
+    <!-- EDIT: replace with your real certificates. Copy the <li> line to add more, or delete this whole section if you'd rather leave it out for now. -->
+    <ul style="list-style:none; display:grid; gap:14px; max-width:680px;">
+      <li style="border-bottom:1px solid var(--line); padding-bottom:14px;">
+        <strong style="color:var(--cacao);">[Certificate name]</strong> — <span style="color:var(--milk);">[Issuing platform / organization, year]</span>
+      </li>
+      <li style="border-bottom:1px solid var(--line); padding-bottom:14px;">
+        <strong style="color:var(--cacao);">[Certificate name]</strong> — <span style="color:var(--milk);">[Issuing platform / organization, year]</span>
+      </li>
+      <li style="border-bottom:1px solid var(--line); padding-bottom:14px;">
+        <strong style="color:var(--cacao);">[Certificate name]</strong> — <span style="color:var(--milk);">[Issuing platform / organization, year]</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="tag" style="color:var(--caramel); font-family:'Fraunces',serif; font-style:italic;">Contact</div>
+    <h2 style="margin-top:10px;">Let's build something good together</h2>
+    <!-- EDIT: your contact intro line -->
+    <p class="lead">Have a project, an internship opportunity, or a question about my work? I'd like to hear from you.</p>
+    <!-- EDIT: replace with your real email address -->
+    <a href="mailto:your.email@example.com" class="btn btn-solid">Say hello — your.email@example.com</a>
+    <div class="contact-links">
+      <!-- EDIT: your real links -->
+      <a href="https://github.com/prajwal18-rgb" target="_blank" rel="noopener">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <!-- EDIT: your name in the copyright line -->
+  © <span id="year"></span> Prajwal Dhoke. Built with brown, white, and a little chocolate.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // simple mobile menu toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.cssText += 'flex-direction:column; position:absolute; top:76px; right:22px; background:var(--white); padding:20px 24px; border:1px solid var(--line); gap:18px;';
+    });
+  }
+</script>
+
+</body>
+</html>
