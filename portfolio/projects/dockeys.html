@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocKeys — Government Scheme Advisor | Prajwal Dhoke</title>
+<meta name="description" content="A Flutter app that matches users to government schemes they're eligible for and tracks required documents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">P.<span>D.</span></div>
+    <div class="nav-links">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#certifications">Certifications</a>
+      <a href="../resume.html">Resume</a>
+      <a href="../index.html#contact" class="nav-cta">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<div class="crumb">
+  <div class="wrap">
+    <a href="../index.html#work" class="back-link">← Back to all projects</a>
+  </div>
+</div>
+
+<section class="proj-hero">
+  <div class="wrap">
+    <div class="tag">Project · Mobile App</div>
+    <h1>DocKeys — Government Scheme Advisor &amp; Document Tracker</h1>
+    <p class="summary">A cross-platform Flutter app that helps people discover government schemes they qualify for, and keeps their documents organized.</p>
+    <div class="proj-meta">
+      <a href="https://github.com/prajwal18-rgb/DocKeys" target="_blank" rel="noopener">GitHub ↗</a>
+      <span class="badge">Final-year diploma project</span>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <p>A lot of government schemes and bank scholarships go unclaimed simply because the people who qualify for them never find out they exist, or lose track of the documents needed to apply once they do.</p>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>The solution</h2>
+    <p>DocKeys is a cross-platform Flutter app with two sides to it. For users: profile-based scheme matching (so you only see schemes you're actually eligible for), a personal document vault to keep required paperwork organized, and notifications when new schemes launch. For admins: a publishing panel to add new schemes and push announcements, backed by Firebase for real-time sync across devices.</p>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>Tech stack</h2>
+    <div class="stack-row">
+        <span class="pill">Flutter</span>
+        <span class="pill">Dart</span>
+        <span class="pill">Provider (state management)</span>
+        <span class="pill">Go Router</span>
+        <span class="pill">Firebase Authentication</span>
+        <span class="pill">SharedPreferences</span>
+        <span class="pill">file_picker</span>
+        <span class="pill">url_launcher</span>
+      </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>Key features &amp; challenges</h2>
+    <ul>
+        <li>Designing an eligibility-filtering system flexible enough to match a wide range of scheme criteria against a user's profile.</li>
+        <li>Keeping two very different experiences — a simple user flow and a more admin-heavy publishing flow — cleanly separated inside one codebase and one Firebase backend.</li>
+        <li>Reliable document storage and retrieval across devices using Flutter's file-handling and Firebase together.</li>
+      </ul>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>Results</h2>
+    <p>Built as my final-year diploma project, with working user and admin flows and real-time Firebase-backed data sync.</p>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="wrap">
+    <h2>Screenshots</h2>
+    <div class="shot-grid">
+        <div class="shot-placeholder">Add app screenshots (user flow and admin panel) here</div>
+        <div class="shot-placeholder">Add app screenshots (user flow and admin panel) here</div>
+      </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Prajwal Dhoke — built with brown, white, and a sneaky square of chocolate. 🍫 (don't tell my dentist)
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.cssText += 'flex-direction:column; position:absolute; top:76px; right:22px; background:var(--white); padding:20px 24px; border:1px solid var(--line); gap:18px;';
+    });
+  }
+</script>
+</body>
+</html>
